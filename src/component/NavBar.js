@@ -8,6 +8,7 @@ export function NavBar() {
     <Flex>
       <Button onClick={() => navigate("/")}>home</Button>
       <Button onClick={() => navigate("/write")}>write</Button>
+      <Button onClick={() => navigate("/signup")}>sign up</Button>
     </Flex>
   );
 }
