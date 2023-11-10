@@ -22,7 +22,6 @@ export function BoardWrite() {
 
   function handleSubmit() {
     setIsSubmitting(true);
-
     axios
       .post("/api/board/add", {
         title,

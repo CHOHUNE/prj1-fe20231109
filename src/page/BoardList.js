@@ -26,23 +26,26 @@ export function BoardList() {
   if (boardList === null) {
     return <Spinner />;
   }
+
   return (
     <Box>
-      <h1>게시물 목록 </h1>
-      <Table>
-        <Thead>
-          <Tr>
-            <Th>id</Th>
-            <Th>title</Th>
-            <Th>by</Th>
-            <Th>at</Th>
-          </Tr>
-        </Thead>
-        <Tbody>
-          {boardList &&
-            boardList.map((board) => (
+      <h1>게시물 목록</h1>
+      <Box>
+        <Table>
+          <Thead>
+            <Tr>
+              <Th>id</Th>
+              <Th>title</Th>
+              <Th>by</Th>
+              <Th>at</Th>
+            </Tr>
+          </Thead>
+          <Tbody>
+            {boardList.map((board) => (
               <Tr
-                _hover={{ cursor: "pointer" }}
+                _hover={{
+                  cursor: "pointer",
+                }}
                 key={board.id}
                 onClick={() => navigate("/board/" + board.id)}
               >
@@ -52,8 +55,9 @@ export function BoardList() {
                 <Td>{board.inserted}</Td>
               </Tr>
             ))}
-        </Tbody>
-      </Table>
+          </Tbody>
+        </Table>
+      </Box>
     </Box>
   );
 }
