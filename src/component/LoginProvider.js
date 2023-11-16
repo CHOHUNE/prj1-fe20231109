@@ -2,7 +2,7 @@ import React, { createContext, useEffect, useState } from "react";
 import axios from "axios";
 
 export const LoginContext = createContext(null);
-function LogInProvider({ children }) {
+function LoginProvider({ children }) {
   const [login, setLogin] = useState("");
 
   useEffect(() => {
@@ -47,4 +47,4 @@ function LogInProvider({ children }) {
   );
 }
 
-export default LogInProvider;
+export default LoginProvider;

@@ -35,9 +35,6 @@ export function MemberLogin() {
           status: "warning",
         });
         console.log("bad");
-      })
-      .finally(() => {
-        fetchLogin();
       });
   }
 

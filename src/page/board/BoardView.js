@@ -4,8 +4,10 @@ import axios from "axios";
 import {
   Box,
   Button,
+  Flex,
   FormControl,
   FormLabel,
+  Heading,
   Input,
   Modal,
   ModalBody,
@@ -21,6 +23,8 @@ import {
 } from "@chakra-ui/react";
 import { LoginContext } from "../../component/LoginProvider";
 import { CommentContainer } from "../../component/CommentContainer";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
 
 export function BoardView() {
   const [board, setBoard] = useState(null);
@@ -61,9 +65,24 @@ export function BoardView() {
       .finally(() => onClose());
   }
 
+  function handleLike() {
+    axios
+      .post("/api/like", { boardId: board.id })
+      .then(() => console.log("good"))
+      .catch(() => console.log("bad"))
+      .finally(() => console.log("done"));
+  }
+
   return (
     <Box>
-      <h1>{board.id}번 글 보기</h1>
+      <Flex justifyContent={"space-between"}>
+        <Heading size={"xl"}>
+          <h1>{board.id}번 글 보기</h1>
+        </Heading>
+        <Button varaint={"ghots"} size={"xl"} onClick={handleLike}>
+          <FontAwesomeIcon icon={faHeart} size="xl" />
+        </Button>
+      </Flex>
       <FormControl>
         <FormLabel>제목</FormLabel>
         <Input value={board.title} readOnly />
