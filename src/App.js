@@ -15,7 +15,7 @@ import { MemberList } from "./page/member/MemberList";
 import { MemberView } from "./page/member/MemberView";
 import { MemberEdit } from "./page/member/MemberEdit";
 import { MemberLogin } from "./page/member/MemberLogin";
-import LoginProvider from "./component/LoginProvider";
+import LogInProvider from "./component/LogInProvider";
 
 const routes = createBrowserRouter(
   createRoutesFromElements(
@@ -35,9 +35,9 @@ const routes = createBrowserRouter(
 
 function App(props) {
   return (
-    <LoginProvider>
+    <LogInProvider>
       <RouterProvider router={routes} />
-    </LoginProvider>
+    </LogInProvider>
   );
 }
 

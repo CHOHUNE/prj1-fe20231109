@@ -1,15 +1,13 @@
-import { Button, Flex, useToast } from "@chakra-ui/react";
+import { Button, Flex, Spacer, useToast } from "@chakra-ui/react";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useContext, useEffect } from "react";
-import { LoginContext } from "./LoginProvider";
+import { LoginContext } from "./LogInProvider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEnvelope } from "@fortawesome/free-regular-svg-icons";
 import {
   faCircleInfo,
   faHouse,
   faPen,
-  faPerson,
   faRightFromBracket,
   faRightToBracket,
   faUser,
@@ -46,44 +44,80 @@ export function NavBar() {
   }
 
   return (
-    <Flex>
-      <Button onClick={() => navigate("/")}>
-        <FontAwesomeIcon icon={faHouse} />
-        home
+    <Flex mb={10}>
+      <Button
+        leftIcon={<FontAwesomeIcon icon={faHouse} />}
+        borderRadius={0}
+        variant={"ghost"}
+        size={"lg"}
+        onClick={() => navigate("/")}
+      >
+        HOME
       </Button>
       {isAuthenticated() && (
-        <Button onClick={() => navigate("/write")}>
-          <FontAwesomeIcon icon={faPen} />
-          write
+        <Button
+          borderRadius={0}
+          variant={"ghost"}
+          size={"lg"}
+          leftIcon={<FontAwesomeIcon icon={faPen} />}
+          onClick={() => navigate("/write")}
+        >
+          작성
         </Button>
       )}
+      <Spacer />
       {isAuthenticated() || (
-        <Button onClick={() => navigate("/signup")}>
-          <FontAwesomeIcon icon={faUser} />
-          signup
+        <Button
+          borderRadius={0}
+          variant={"ghost"}
+          size={"lg"}
+          leftIcon={<FontAwesomeIcon icon={faUser} />}
+          onClick={() => navigate("/signup")}
+        >
+          회원가입
         </Button>
       )}
       {isAdmin() && (
-        <Button onClick={() => navigate("/member/list")}>
-          <FontAwesomeIcon icon={faUsers} />
+        <Button
+          borderRadius={0}
+          variant={"ghost"}
+          size={"lg"}
+          leftIcon={<FontAwesomeIcon icon={faUsers} />}
+          onClick={() => navigate("/member/list")}
+        >
           회원목록
         </Button>
       )}
       {isAuthenticated() && (
-        <Button onClick={() => navigate("/member?" + urlParams.toString())}>
-          <FontAwesomeIcon icon={faCircleInfo} />
+        <Button
+          borderRadius={0}
+          variant={"ghost"}
+          size={"lg"}
+          leftIcon={<FontAwesomeIcon icon={faCircleInfo} />}
+          onClick={() => navigate("/member?" + urlParams.toString())}
+        >
           회원정보
         </Button>
       )}
       {isAuthenticated() || (
-        <Button onClick={() => navigate("/login")}>
-          <FontAwesomeIcon icon={faRightToBracket} />
+        <Button
+          borderRadius={0}
+          variant={"ghost"}
+          size={"lg"}
+          leftIcon={<FontAwesomeIcon icon={faRightToBracket} />}
+          onClick={() => navigate("/login")}
+        >
           로그인
         </Button>
       )}
       {isAuthenticated() && (
-        <Button onClick={handleLogout}>
-          <FontAwesomeIcon icon={faRightFromBracket} />
+        <Button
+          borderRadius={0}
+          variant={"ghost"}
+          size={"lg"}
+          leftIcon={<FontAwesomeIcon icon={faRightFromBracket} />}
+          onClick={handleLogout}
+        >
           로그아웃
         </Button>
       )}

@@ -2,20 +2,27 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import {
   Box,
-  Button,
   FormControl,
   FormLabel,
-  Input,
-  Modal,
-  ModalBody,
-  ModalCloseButton,
-  ModalContent,
-  ModalFooter,
-  ModalHeader,
-  ModalOverlay,
   Spinner,
+  Input,
+  Button,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalCloseButton,
+  ModalBody,
+  ModalFooter,
   useDisclosure,
   useToast,
+  Card,
+  Center,
+  Heading,
+  CardHeader,
+  CardBody,
+  CardFooter,
+  Flex,
 } from "@chakra-ui/react";
 import axios from "axios";
 
@@ -36,7 +43,7 @@ export function MemberView() {
       .catch((error) => {
         navigate("/login");
         toast({
-          description: "권한이 없습니다",
+          description: "권한이 없습니다.",
           status: "warning",
         });
       });
@@ -61,7 +68,6 @@ export function MemberView() {
           status: "success",
         });
         navigate("/");
-        // TODO : 로그아웃 기능 추가하기
       })
       .catch((error) => {
         if (error.response.status === 401 || error.response.status === 403) {
@@ -80,29 +86,39 @@ export function MemberView() {
   }
 
   return (
-    <Box>
-      <h1>{member.id}님 정보</h1>
-      <FormControl>
-        <FormLabel>password</FormLabel>
-        <Input type="text" value={member.password} readOnly />
-      </FormControl>
-      <FormControl>
-        <FormLabel>별명</FormLabel>
-        <Input value={member.nickName} readOnly></Input>
-      </FormControl>
-      <FormControl>
-        <FormLabel>email</FormLabel>
-        <Input value={member.email} readOnly />
-      </FormControl>
-      <Button
-        colorScheme="purple"
-        onClick={() => navigate("/member/edit?" + params.toString())}
-      >
-        수정
-      </Button>
-      <Button colorScheme="red" onClick={onOpen}>
-        탈퇴
-      </Button>
+    <Center>
+      <Card w={"lg"}>
+        <CardHeader>
+          <Heading>{member.id}님 정보</Heading>
+        </CardHeader>
+        <CardBody>
+          <FormControl mb={5}>
+            <FormLabel>password</FormLabel>
+            <Input type="text" value={member.password} readOnly />
+          </FormControl>
+          <FormControl mb={5}>
+            <FormLabel>별명</FormLabel>
+            <Input value={member.nickName} readOnly></Input>
+          </FormControl>
+          <FormControl mb={5}>
+            <FormLabel>email</FormLabel>
+            <Input value={member.email} readOnly />
+          </FormControl>
+        </CardBody>
+        <CardFooter>
+          <Flex gap={2}>
+            <Button
+              colorScheme="purple"
+              onClick={() => navigate("/member/edit?" + params.toString())}
+            >
+              수정
+            </Button>
+            <Button colorScheme="red" onClick={onOpen}>
+              탈퇴
+            </Button>
+          </Flex>
+        </CardFooter>
+      </Card>
 
       {/* 탈퇴 모달 */}
       <Modal isOpen={isOpen} onClose={onClose}>
@@ -120,6 +136,6 @@ export function MemberView() {
           </ModalFooter>
         </ModalContent>
       </Modal>
-    </Box>
+    </Center>
   );
 }
